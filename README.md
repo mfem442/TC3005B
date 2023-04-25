@@ -8,10 +8,11 @@
 - Tobs
 
 ### Ejecución:
-- Ir al path "...\src"
-- Ejecutar: `node index.js`
+- `npm start`
+- `docker-compose up`
 
 ### Falta:
 - Crear rutas y vistas de Ubicaciones y Episodios
-- Incluir boton del signin e icono de perfil en la vista principal
 - Implementar el Sign Up
+- Implementar dotenv-vault para seguridad en dockers
+- Arreglar problema de autorización de base de datos
