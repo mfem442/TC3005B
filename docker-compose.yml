@@ -3,18 +3,20 @@ services:
   mysql-database:
     build: ./mysql-database
     environment:
-      MYSQL_ROOT_PASSWORD: Szp4125?9
-      MYSQL_DATABASE: itesm502
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     restart: always
   web-nodejs:
     build: ./web-nodejs
     environment:
-      MYSQL_DATABASE: itesm502
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Sp4125?9
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_HOST: mysql-database
     ports:
-      - "3000:3000"
+      - "${PORT}:${PORT}"
     depends_on:
       - mysql-database
     restart: on-failure
+    env_file:
+      - .env
