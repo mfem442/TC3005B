@@ -33,7 +33,7 @@ app.set('view engine', '.hbs')
 
 // Middlewares
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.MYSQL_DATABASE || "itesm502",
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database)

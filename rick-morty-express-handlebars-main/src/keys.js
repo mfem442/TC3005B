@@ -1,8 +1,8 @@
 module.exports = {
     database: {
-        host: 'localhost',
-        user: 'root',
-        password: process.env.DB_PASSWORD,
-        database: process.env.SESSION_SECRET
+        host: process.env.MYSQL_HOST || "localhost",
+        user: process.env.MYSQL_USER || "root",
+        password: process.env.MYSQL_PASSWORD || "Mp4135*6",
+        database: process.env.MYSQL_DATABASE || "itesm502"
     }
 }
