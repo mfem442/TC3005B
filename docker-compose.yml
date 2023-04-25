@@ -7,7 +7,7 @@ services:
       MYSQL_DATABASE: itesm502
     restart: always
   web-nodejs:
-    build: ./rick-morty-express-handlebars-main
+    build: ./web-nodejs
     environment:
       MYSQL_DATABASE: itesm502
       MYSQL_USER: root
