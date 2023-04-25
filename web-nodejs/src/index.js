@@ -1,3 +1,4 @@
+require('dotenv').config({debug: true})
 const express = require('express')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
@@ -7,6 +8,7 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
 const passport = require('passport');
 const moment = require("moment")
+
 
 const { database } = require('./keys')
 
@@ -33,7 +35,7 @@ app.set('view engine', '.hbs')
 
 // Middlewares
 app.use(session({
-    secret: 'itesm502',
+    secret: process.env.MYSQL_DATABASE,
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database)
