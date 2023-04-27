@@ -22,7 +22,7 @@ MYSQL_HOST = "localhost"
 MYSQL_PASSWORD = "password"
 PORT = 3000
 ```
-- Replaza los valores por tus propias llaves
+- Remplaza los valores por tus propias llaves
 ***
 ## Ejecución:
 - Corre el siguiente comando:
