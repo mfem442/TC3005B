@@ -11,7 +11,7 @@
 - Crear rutas y vistas de Ubicaciones y Episodios
 - Implementar el Sign Up
 ***
-## Dotenv
+## Dotenv:
 En caso de querer utilizar tus propias llaves para la base de datos:
 - En el código se encuentran dos archivos llamados ".env", en [la raíz del directorio](https://github.com/mfem442/TC3005B/blob/main/.env) y en [/web-nodejs](https://github.com/mfem442/TC3005B/blob/main/web-nodejs/.env)
 - Los archivos incluyen unas variables para el nombre de la base de datos, usuario, host, contraseña y puerto
@@ -30,3 +30,4 @@ PORT = 3000
 docker-compose up
 ```
 - Visualízalo en `http://localhost:3000/`
+> En caso de error, cierra tu navegador y vuelve a entrar
