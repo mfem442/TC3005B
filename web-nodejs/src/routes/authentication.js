@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
+const { isLoggedIn, isNotLoggedIn, existUser } = require('../lib/auth');
 const { encryptPassword, matchPassword } = require('../lib/helpers')
 
 const pool = require('../database');
@@ -13,21 +13,10 @@ router.get('/signin', isNotLoggedIn, (req, res) => {
 router.post('/signin', isNotLoggedIn, (req, res, next) => {
     passport.authenticate('local.signin', {
         successRedirect: '/profile',
-        failureRedirect: '/',
+        failureRedirect: '/signin',
         failureFlash: true
     })(req, res, next)
 })
-
-router.get('/signup', isNotLoggedIn, (req, res) => {
-    res.render('auth/signup')
-})
-
-router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
-    successRedirect: '/profile',
-    failureRedirect: '/signup',
-    failureFlash: true
-}))
-
 
 router.get('/profile', isLoggedIn, (req, res) => {
     res.render('profile');
@@ -47,10 +36,20 @@ router.post('/change-password', isLoggedIn, async (req, res) => {
         const newUser = {
             password: await encryptPassword(newPassword)
         }
-        await pool.query('UPDATE User set ? WHERE id = ?', [newUser, req.user.id])
+        await pool.query('UPDATE user set ? WHERE id = ?', [newUser, req.user.id])
         req.flash('success', 'Contraseña actualizada correctamente');
         res.redirect('/profile')
     }
 })
+
+router.get('/signup', isNotLoggedIn, (req, res) => {
+    res.render('auth/signup')
+})
+
+router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
+    successRedirect: '/profile',
+    failureRedirect: '/signup',
+    failureFlash: true
+}))
 
 module.exports = router;

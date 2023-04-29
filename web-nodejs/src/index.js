@@ -1,4 +1,4 @@
-require('dotenv').config({debug: true})
+require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const exphbs = require('express-handlebars')
@@ -9,7 +9,6 @@ const MySQLStore = require('express-mysql-session');
 const passport = require('passport');
 const moment = require("moment")
 
-
 const { database } = require('./keys')
 
 // Initializations
@@ -18,7 +17,7 @@ require('./lib/passport')
 moment.locale('es'); 
 
 // Settings
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 3000);
 
 app.set('views', path.join(__dirname, 'views'));
 
@@ -35,7 +34,7 @@ app.set('view engine', '.hbs')
 
 // Middlewares
 app.use(session({
-    secret: process.env.MYSQL_DATABASE || "itesm502",
+    secret: 'itesm502',
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database)

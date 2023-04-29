@@ -5,8 +5,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3306:3306"
     restart: always
   web-nodejs:
+    depends_on:
+      - mysql-database
     build: ./web-nodejs
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -14,9 +18,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_HOST: mysql-database
     ports:
-      - ${PORT}:${PORT}
-    depends_on:
-      - mysql-database
+      - "${PORT}:${PORT}"
     restart: on-failure
     env_file:
       - .env
